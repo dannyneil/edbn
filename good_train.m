@@ -32,7 +32,7 @@ figure;
 visualize(edbn.erbm{1}.W');   %  Visualize the RBM weights
 er = edbntest (edbn, train_x, train_y);
 fprintf('Scored: %2.2f\n', (1-er)*100);
-filename = sprintf('fulltrain_zavlsi4_%2.2f-%s.mat',(1-er)*100, date());
+filename = sprintf('good_mnist_%2.2f-%s.mat',(1-er)*100, date());
 edbnclean(edbn);
 save(filename,'edbn');
 
@@ -45,6 +45,9 @@ figure;
 visualize(edbn.erbm{1}.W');   %  Visualize the RBM weights
 er = edbntest (edbn, train_x, train_y);
 fprintf('Scored: %2.2f\n', (1-er)*100);
+filename = sprintf('good_mnist_%2.2f-%s.mat',(1-er)*100, date());
+edbnclean(edbn);
+save(filename,'edbn');
 
 %% Show the EDBN in action
 spike_list = live_edbn(edbn, test_x(1, :), opts);
