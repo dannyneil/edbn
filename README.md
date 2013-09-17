@@ -67,7 +67,26 @@ Unzip the repo and navigate to it within Matlab.  That's it.  If you'd like to t
 ```matlab
 example.m
 ```
-This will train a network on the MNIST handwritten digit database to get greater than 92% accuracy, then run it on a spiking neuron network.
+This will train a network on the MNIST handwritten digit database to greater than 92% accuracy, then run it on a spiking neuron network.  The source has been tested successfully with Matlab R2012a and later.
+
+### File overview
+The main files are referenced by the [example](example.m) file, which is compromised of the following execution order:
+* example.m - runs an example
+* edbnsetup.m - initializes the network and load defaults
+* edbntrain.m - performs unsupervised training of the network
+* erbmtrain.m - trains a single RBM layer in the DBN
+* siegert.m - calculates the output spike rate of an input rate and input weights for LIF neurons
+* erbmup.m / erbmdown.m - propagates rate-based activations up or down through LIF neurons
+* edbntoptrain.m - performs supervised training by concatenating the top layer to the top-2 layer, and jointly training a (top-2, top)<->(top-1) RBM, then unrolling again.  
+* edbnclean.m - cleans out all the temporary activations to save a minimum-size EDBN file
+* edbntoxml.m - creates a base64-encoded representation of the network
+* live_edbn.m - run the weights on an actual spiking network of neurons
+
+The source also contains two .mat files which contain matlab structures:
+* edbn_95.52.mat is a spiking network that achieves 95.52% recognition accuracy on the MNIST database of handwritten digits
+* mnist_uint8.mat contains the mnsit network in matlab uint8 format, courtesy of the [DeepLearnToolbox])(https://github.com/rasmusbergpalm/DeepLearnToolbox) and ultimately Yann LeCun.
+
+Lastly, the source file that created the 95.52% accurate MNIST network is generated with [good_train.m](good_train.m)
 
 ### Questions
 Please feel free to reach out here if you have any questions or difficulties.  I'm happy to help guide!
