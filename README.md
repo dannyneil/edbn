@@ -41,6 +41,7 @@ opts.numepochs = 6;
 % Train
 fprintf('Beginning training.\n');
 edbn = edbntrain(edbn, train_x, opts);
+% Use supervised training on the top layer
 edbn = edbntoptrain(edbn, train_x, opts, train_y);
 
 % Show results
@@ -66,4 +67,7 @@ Unzip the repo and navigate to it within Matlab.  That's it.  If you'd like to t
 ```matlab
 example.m
 ```
-Please feel free to reach out if you have any questions or difficulties.
+This will train a network on the MNIST handwritten digit database to get greater than 92% accuracy, then run it on a spiking neuron network.
+
+### Questions
+Please feel free to reach out here if you have any questions or difficulties.  I'm happy to help guide!

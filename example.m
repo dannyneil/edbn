@@ -22,6 +22,7 @@ opts.numepochs = 6;
 % Train
 fprintf('Beginning training.\n');
 edbn = edbntrain(edbn, train_x, opts);
+% Use supervised training on the top layer
 edbn = edbntoptrain(edbn, train_x, opts, train_y);
 
 % Show results
@@ -37,5 +38,5 @@ output_idxs = (spike_list.layers == numel(edbn.sizes));
 figure(2); clf;
 hist(spike_list.addrs(output_idxs) - 1, 0:edbn.sizes(end));
 title('Label Layer Classification Spikes');
-%% Export to xml to load into JSpikeStack
+%% Export to xml
 edbntoxml(edbn, opts, 'mnist_edbn');
