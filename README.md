@@ -84,7 +84,7 @@ The main files are referenced by the [example](example.m) file, which is comprom
 
 The source also contains two .mat files which contain matlab structures:
 * edbn_95.52.mat is a spiking network that achieves 95.52% recognition accuracy on the MNIST database of handwritten digits
-* mnist_uint8.mat contains the mnsit network in matlab uint8 format, courtesy of the [DeepLearnToolbox])(https://github.com/rasmusbergpalm/DeepLearnToolbox) and ultimately Yann LeCun.
+* mnist_uint8.mat contains the mnsit network in matlab uint8 format, courtesy of the [DeepLearnToolbox](https://github.com/rasmusbergpalm/DeepLearnToolbox) and ultimately Yann LeCun.
 
 Lastly, the source file that created the 95.52% accurate MNIST network is generated with [good_train.m](good_train.m)
 
