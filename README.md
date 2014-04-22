@@ -88,7 +88,7 @@ The source also contains two .mat files which contain matlab structures:
 
 The source file that created the 95.52% accurate MNIST network is generated with [good_train.m](good_train.m).
 
-Finally, the script [edbn_brian_test.m](edbn_brian_test.m) demonstrates loading a trained network in the BRIAN neural network simulator, feeding it Poisson inputs from the MNIST database, and calculating the resulting output classification.
+Finally, the script [edbn_brian_test.py](edbn_brian_test.py) demonstrates loading a trained network in the BRIAN neural network simulator, feeding it Poisson inputs from the MNIST database, and calculating the resulting output classification.
 
 ### Questions
 Please feel free to reach out here if you have any questions or difficulties.  I'm happy to help guide you.
