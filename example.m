@@ -28,7 +28,7 @@ edbn = edbntoptrain(edbn, train_x, opts, train_y);
 % Show results
 figure;
 visualize(edbn.erbm{1}.W');   %  Visualize the RBM weights
-er = edbntest (edbn, train_x, train_y);
+er = edbntest (edbn, test_x, test_y);
 fprintf('Scored: %2.2f\n', (1-er)*100);
 
 %% Show the EDBN in action
