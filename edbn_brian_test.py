@@ -11,6 +11,7 @@ import multiprocessing
 # Load MNIST data
 def load_data(matfile):
     dataset = sio.loadmat('mnist_uint8.mat')
+    # Rescale from int to float [0 1.0], and then between [0 0.2] of max firing
     test_x = dataset['test_x'] / 255.0 * 0.2
     test_y = dataset['test_y'] / 255.0 * 0.2
     return test_x, test_y
@@ -33,7 +34,6 @@ def loadMatEDBNDescription(matfile):
         weightList.append(edbn['edbn']['erbm'][0][0][0][l][0][0][_WEIGHTStr])
     return edbnTopology, weightList
 
-
 # Core of this script: initialize a net, load a digit, and test its results
 def run_digit(test_data, weightlist, topology, params):
     reinit_default_clock()
@@ -53,17 +53,16 @@ def run_digit(test_data, weightlist, topology, params):
         c = Connection(pops[layer_num], pops[layer_num+1], 'v', weight=weights.T*1000*mV)
         conns.append(c)
 
-    # Set a spike rate of 0.2 * 30 for a fully on digit
+    # Set a spike rate of 0.2 * 30 = 6 spikes/sec for a fully-on pixel
     pops[0].rate = test_x * 30.0
     # Track the output layer spikes
     output_spikes = SpikeCounter(pops[-1])
-    # Run for one second, approximately 1000 spikes
+    # Run for one second, approximately 1000 spikes total input over all 784 pixels
     run(1.0*second)
     # Get digit guess and correct answer
     guessed_digit = np.argmax(output_spikes.count)
     correct_digit = np.argmax(test_y)
     # Return true if correct
-
     return guessed_digit == correct_digit
 
 if __name__ == "__main__":
