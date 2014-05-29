@@ -37,6 +37,8 @@ output_idxs = (spike_list.layers == numel(edbn.sizes));
 
 figure(2); clf;
 hist(spike_list.addrs(output_idxs) - 1, 0:edbn.sizes(end));
+xlabel('Digit Guessed');
+ylabel('Histogram Spike Count');
 title('Label Layer Classification Spikes');
 %% Export to xml
 edbntoxml(edbn, opts, 'mnist_edbn');
